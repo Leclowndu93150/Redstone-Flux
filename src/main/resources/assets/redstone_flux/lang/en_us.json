@@ -1,0 +1,5 @@
+{
+  "itemGroup.redstone_flux": "Example Mod Tab",
+  "block.redstone_flux.example_block": "Example Block",
+  "item.redstone_flux.example_item": "Example Item"
+}

@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.leclowndu93150.redstone_flux.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "TranslatableContentsMixin",
+    "LiteralContentsMixin",
+    "SimpleProgressStyleMixin",
+    "MekanismUnitDisplayUtilsMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
