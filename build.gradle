@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'idea'
-    id 'net.neoforged.moddev' version '2.0.116'
+    id 'net.neoforged.moddev.legacyforge' version '2.+'
 }
 
 version = mod_version
@@ -16,14 +16,14 @@ repositories {
 }
 
 base {
-    archivesName = mod_id+"-1.21.1-NeoForge"
+    archivesName = mod_id+"-1.20.1-Forge"
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
-neoForge {
+legacyForge {
     // Specify the version of NeoForge to use.
-    version = project.neo_version
+    version = project.minecraft_version+"-"+project.neo_version
 
     parchment {
         mappingsVersion = project.parchment_mappings_version
@@ -99,13 +99,23 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 
 dependencies {
-    implementation "curse.maven:jade-324717:6853386"
-    implementation "curse.maven:mekanism-268560:7132168"
-    implementation "curse.maven:titanium-287342:6875285"
-    implementation "curse.maven:industrial-foregoing-266515:7073719"
+    modImplementation("curse.maven:jade-324717:6855440")
+    modImplementation("curse.maven:mekanism-268560:6552911")
     
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+}
+
+mixin {
+    add sourceSets.main, "${mod_id}.refmap.json"
+
+    config "${mod_id}.mixins.json"
+}
+
+jar {
+    manifest.attributes([
+            "MixinConfigs": "redstone_flux.mixins.json"
+    ])
 }
 
 test {
@@ -136,7 +146,7 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
 // this works with both building through Gradle and the IDE.
 sourceSets.main.resources.srcDir generateModMetadata
 // To avoid having to run "generateModMetadata" manually, make it run on every project reload
-neoForge.ideSyncTask generateModMetadata
+legacyForge.ideSyncTask generateModMetadata
 
 // Example configuration to allow publishing using the maven-publish plugin
 publishing {

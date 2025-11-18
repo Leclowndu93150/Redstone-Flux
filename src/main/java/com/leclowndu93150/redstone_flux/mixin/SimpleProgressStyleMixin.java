@@ -5,9 +5,9 @@ import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import snownee.jade.impl.ui.SimpleProgressStyle;
+import snownee.jade.impl.ui.ProgressStyle;
 
-@Mixin(value = SimpleProgressStyle.class, remap = false)
+@Mixin(value = ProgressStyle.class, remap = false)
 public class SimpleProgressStyleMixin {
     
     @ModifyVariable(
