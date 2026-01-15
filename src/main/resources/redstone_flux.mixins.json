@@ -11,6 +11,7 @@
     "MekanismUnitDisplayUtilsMixin"
   ],
   "client": [
+    "JourneyMapFullscreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

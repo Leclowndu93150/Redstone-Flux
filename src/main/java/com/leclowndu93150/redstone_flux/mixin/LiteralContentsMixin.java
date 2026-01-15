@@ -18,20 +18,22 @@ public class LiteralContentsMixin {
     private void replaceInVisit(FormattedText.ContentConsumer<?> consumer, CallbackInfoReturnable<Optional<?>> cir) {
         LiteralContents self = (LiteralContents) (Object) this;
         String original = self.text();
+        if (original == null) return;
         String modified = EnergyTermReplacer.replaceEnergyTerms(original);
         
-        if (!modified.equals(original)) {
+        if (modified != null && !modified.equals(original)) {
             cir.setReturnValue(consumer.accept(modified));
         }
     }
-    
+
     @Inject(method = "visit(Lnet/minecraft/network/chat/FormattedText$StyledContentConsumer;Lnet/minecraft/network/chat/Style;)Ljava/util/Optional;", at = @At("HEAD"), cancellable = true)
     private void replaceInStyledVisit(FormattedText.StyledContentConsumer<?> consumer, Style style, CallbackInfoReturnable<Optional<?>> cir) {
         LiteralContents self = (LiteralContents) (Object) this;
         String original = self.text();
+        if (original == null) return;
         String modified = EnergyTermReplacer.replaceEnergyTerms(original);
-        
-        if (!modified.equals(original)) {
+
+        if (modified != null && !modified.equals(original)) {
             cir.setReturnValue(consumer.accept(style, modified));
         }
     }

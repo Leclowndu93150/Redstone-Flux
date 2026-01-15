@@ -103,6 +103,7 @@ dependencies {
 
     modImplementation("curse.maven:jade-324717:6855440")
     modImplementation("curse.maven:mekanism-268560:6552911")
+    modImplementation("curse.maven:journeymap-32274:5789363")
     
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
